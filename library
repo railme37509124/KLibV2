@@ -1,0 +1,590 @@
+-- this was coded so badly but it doesnt matter because it works
+
+repeat task.wait() until game:IsLoaded()
+inst=nil
+if _G.klibloaded ~= nil then _G.klibloaded:Destroy() end
+klib = {
+	Tabs={},Hover=false,TabCount=0,DragSpeed=0.2,Destroy=function()inst:Destroy()end,Theme=Color3.fromRGB(81, 255, 6)
+}
+
+local gui2 = Instance.new("ScreenGui")
+local topbar = Instance.new("Frame")
+local contents = Instance.new("Frame")
+local bottombar = Instance.new("Frame")
+local SomeInfo = Instance.new("TextLabel")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local tablistlayout = Instance.new("UIListLayout")
+local closebutton = Instance.new("ImageButton")
+local minimizebutton = Instance.new("ImageButton")
+local ThisTitle = Instance.new("TextLabel")
+gui2.Name = game:GetService("HttpService"):GenerateGUID(true)
+gui2.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+gui2.ResetOnSpawn = false
+inst = gui2
+topbar.Name = "topbar"
+topbar.Parent = gui2
+topbar.AnchorPoint = Vector2.new(0.5, 0.5)
+topbar.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+topbar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+topbar.BorderSizePixel = 0
+topbar.Position = UDim2.new(0.531030059, 0, 0.45586592, 0)
+topbar.Size = UDim2.new(0, 614, 0, 21)
+contents.Name = "contents"
+contents.Parent = topbar
+contents.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+contents.BorderColor3 = Color3.fromRGB(0, 0, 0)
+contents.BorderSizePixel = 0
+contents.Position = UDim2.new(0, 0, 1, 0)
+contents.Size = UDim2.new(0, 614, 0, 290)
+bottombar.Name = "bottombar"
+bottombar.Parent = contents
+bottombar.AnchorPoint = Vector2.new(0, 1)
+bottombar.BackgroundColor3 = Color3.fromRGB(57, 57, 57)
+bottombar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+bottombar.BorderSizePixel = 0
+bottombar.Position = UDim2.new(0, 0, 1, 0)
+bottombar.Size = UDim2.new(0, 614, 0, 16)
+SomeInfo.Name = "SomeInfo"
+SomeInfo.Parent = bottombar
+SomeInfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SomeInfo.BackgroundTransparency = 1.000
+SomeInfo.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SomeInfo.BorderSizePixel = 0
+SomeInfo.Position = UDim2.new(0.0146579808, 0, 0.1875, 0)
+SomeInfo.Size = UDim2.new(0, 475, 0, 10)
+SomeInfo.Font = Enum.Font.RobotoMono
+SomeInfo.Text = "KLIB  V2.0.0 | "..game.Players.LocalPlayer.Name.." | Untitled"
+SomeInfo.TextColor3 = Color3.fromRGB(124, 124, 124)
+SomeInfo.TextSize = 10.000
+SomeInfo.TextXAlignment = Enum.TextXAlignment.Left
+ScrollingFrame.Parent = contents
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame.BackgroundTransparency = 1.000
+ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ScrollingFrame.BorderSizePixel = 0
+ScrollingFrame.Size = UDim2.new(0, 614, 0, 27)
+ScrollingFrame.BottomImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+ScrollingFrame.ScrollBarThickness = 5
+ScrollingFrame.TopImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+ScrollingFrame.AutomaticCanvasSize = Enum.AutomaticSize.X
+tablistlayout.Name = "tablistlayout"
+tablistlayout.Parent = ScrollingFrame
+tablistlayout.FillDirection = Enum.FillDirection.Horizontal
+tablistlayout.SortOrder = Enum.SortOrder.LayoutOrder
+tablistlayout.Padding = UDim.new(0, 5)
+closebutton.Name = "closebutton"
+closebutton.Parent = topbar
+closebutton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+closebutton.BackgroundTransparency = 1.000
+closebutton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+closebutton.BorderSizePixel = 0
+closebutton.Position = UDim2.new(0.970684052, 0, 0.190476194, 0)
+closebutton.Size = UDim2.new(0, 12, 0, 12)
+closebutton.Image = "rbxassetid://82925672788300"
+closebutton.ImageColor3 = Color3.fromRGB(255, 91, 87)
+minimizebutton.Name = "minimizebutton"
+minimizebutton.Parent = topbar
+minimizebutton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+minimizebutton.BackgroundTransparency = 1.000
+minimizebutton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+minimizebutton.BorderSizePixel = 0
+minimizebutton.Position = UDim2.new(0.941368103, 0, 0.190476194, 0)
+minimizebutton.Size = UDim2.new(0, 12, 0, 12)
+minimizebutton.Image = "rbxassetid://82925672788300"
+minimizebutton.ImageColor3 = Color3.fromRGB(255, 191, 54)
+ThisTitle.Name = "ThisTitle"
+ThisTitle.Parent = topbar
+ThisTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ThisTitle.BackgroundTransparency = 1.000
+ThisTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ThisTitle.BorderSizePixel = 0
+ThisTitle.Position = UDim2.new(0.0146579808, 0, 0.28273809, 0)
+ThisTitle.Size = UDim2.new(0, 475, 0, 10)
+ThisTitle.Font = Enum.Font.RobotoMono
+ThisTitle.Text = "Super Epic Hub by Sussyguy525"
+ThisTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+ThisTitle.TextSize = 13.000
+ThisTitle.TextXAlignment = Enum.TextXAlignment.Left
+closebutton.MouseButton1Click:Connect(klib.Destroy)
+minimizebutton.MouseButton1Click:Connect(function()
+	contents.Visible = not contents.Visible
+end)	
+function klib:SetTitle(new)
+	SomeInfo.Text = "KLIB  V2.0.0 | "..game.Players.LocalPlayer.Name.." | "..new
+	ThisTitle.Text = new
+end
+local UIS = game:GetService("UserInputService")
+function dragify(Frame)
+	dragToggle = nil
+	dragInput = nil
+	dragStart = nil
+	dragPos = nil
+	function updateInput(input)
+		Delta = input.Position - dragStart
+		Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+		game:GetService("TweenService"):Create(Frame, TweenInfo.new(klib.DragSpeed, Enum.EasingStyle.Quint), {Position = Position}):Play()
+	end
+	Frame.InputBegan:Connect(function(input)
+		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+			dragToggle = true
+			dragStart = input.Position
+			startPos = Frame.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragToggle = false
+				end
+			end)
+		end
+	end)
+	Frame.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	game:GetService("UserInputService").InputChanged:Connect(function(input)
+		if input == dragInput and dragToggle then
+			updateInput(input)
+		end
+	end)
+end
+dragify(topbar)
+klib.CreateTab = function(options)
+	local tabcreateelementfunc = {}
+	
+	local enabletab = Instance.new("TextButton")
+	local SomeTab = Instance.new("ScrollingFrame")
+	
+	SomeTab.Name = options.Name
+	SomeTab.Parent = contents
+	SomeTab.Active = true
+	SomeTab.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+	SomeTab.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	SomeTab.BorderSizePixel = 0
+	SomeTab.Position = UDim2.new(0.00325732888, 0, 0.0965517238, 0)
+	SomeTab.Size = UDim2.new(0, 612, 0, 238)
+	SomeTab.BottomImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+	SomeTab.CanvasSize = UDim2.new(0, 0, 0, 0)
+	SomeTab.ScrollBarThickness = 5
+	SomeTab.TopImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+	SomeTab.Visible = false
+	enabletab.Name = options.Name
+	enabletab.Parent = ScrollingFrame
+	enabletab.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
+	enabletab.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	enabletab.BorderSizePixel = 0
+	enabletab.Size = UDim2.new(0, 105, 0, 20)
+	enabletab.AutoButtonColor = false
+	enabletab.Font = Enum.Font.RobotoMono
+	enabletab.Text = options.Name
+	enabletab.TextColor3 = Color3.fromRGB(132, 132, 132)
+	enabletab.TextSize = 14.000
+	local SomeTabFunc = {
+		Selected = false
+	}
+	klib.Tabs[enabletab] = {[1] = SomeTab, [2] = enabletab, [3] = 0}
+	klib.TabCount+=1
+	SomeTabFunc.onc = function()
+		enabletab.TextColor3 = klib.Theme
+		klib.Tabs[enabletab][1].Visible = true
+		for i, v in klib.Tabs do
+			if v[1] ~= SomeTab then
+				v[1].Visible = false
+				v[2].TextColor3 = Color3.fromRGB(132, 132, 132)
+			end
+		end
+	end
+	enabletab.MouseButton1Click:Connect(SomeTabFunc.onc)
+	if klib.TabCount == 1 then
+		SomeTabFunc.onc()
+	end
+	
+	function tabcreateelementfunc:Section(options)
+		local section = {}
+		klib.Tabs[enabletab][3] += 1
+		local xsec = Instance.new("Frame")
+		local UICorner = Instance.new("UICorner")
+		local UIStroke = Instance.new("UIStroke")
+		local sectioncontent = Instance.new("ScrollingFrame")
+		local sectionlist = Instance.new("UIListLayout")
+		sectioncontent.Name = "sectioncontent"
+		sectioncontent.Parent = xsec
+		sectioncontent.Active = true
+		sectioncontent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		sectioncontent.BackgroundTransparency = 1.000
+		sectioncontent.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		sectioncontent.BorderSizePixel = 0
+		sectioncontent.Position = UDim2.new(0, 0, 0.0398230106, 0)
+		sectioncontent.Size = UDim2.new(0, 190, 0, 211)
+		sectioncontent.BottomImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+		sectioncontent.ScrollBarThickness = 4
+		sectioncontent.TopImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+		sectioncontent.AutomaticCanvasSize = Enum.AutomaticSize.Y
+		sectioncontent.CanvasSize = UDim2.new(0, 0, 0, 0)
+		sectionlist.Name = "sectionlist"
+		sectionlist.Parent = sectioncontent
+		sectionlist.SortOrder = Enum.SortOrder.LayoutOrder
+		sectionlist.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		sectionlist.Padding = UDim.new(0, 3)
+		xsec.Name = ""
+		xsec.Parent = SomeTab
+		xsec.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+		xsec.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		xsec.BorderSizePixel = 0
+		if klib.Tabs[enabletab][3] == 1 then
+			xsec.Position = UDim2.new(0.011, 0, 0.021, 0)
+		elseif klib.Tabs[enabletab][3] == 2 then
+			xsec.Position = UDim2.new(0.345, 0, 0.021, 0)
+		elseif klib.Tabs[enabletab][3] == 3 then
+			xsec.Position = UDim2.new(0.68, 0, 0.021, 0)
+		
+		end
+		xsec.Size = UDim2.new(0, 190, 0, 226)
+		UICorner.CornerRadius = UDim.new(0, 6)
+		UICorner.Parent = xsec
+		UIStroke.Parent = xsec
+		UIStroke.Color = Color3.fromRGB(68, 68, 68)
+		UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		
+		function section:Toggle(options)
+			local togfunc = {
+				Toggled = false
+			}
+			local SomeToggle = Instance.new("Frame")
+			local togglename = Instance.new("TextLabel")
+			local ToggleIndicator = Instance.new("Frame")
+			local toggleclick = Instance.new("TextButton")
+			SomeToggle.Name = "SomeToggle"
+			SomeToggle.Parent = sectioncontent
+			SomeToggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			SomeToggle.BackgroundTransparency = 1.000
+			SomeToggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			SomeToggle.BorderSizePixel = 0
+			SomeToggle.Size = UDim2.new(0, 190, 0, 25)
+			togglename.Name = "togglename"
+			togglename.Parent = SomeToggle
+			togglename.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			togglename.BackgroundTransparency = 1.000
+			togglename.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			togglename.BorderSizePixel = 0
+			togglename.Position = UDim2.new(0.126315787, 0, 0, 0)
+			togglename.Size = UDim2.new(0.873684227, 0, 1, 0)
+			togglename.Font = Enum.Font.RobotoMono
+			togglename.Text = " " .. options.Name
+			togglename.TextColor3 = Color3.fromRGB(255, 255, 255)
+			togglename.TextSize = 14.000
+			togglename.TextXAlignment = Enum.TextXAlignment.Left
+			togglename.TextStrokeTransparency = 0
+			ToggleIndicator.Name = "ToggleIndicator"
+			ToggleIndicator.Parent = SomeToggle
+			ToggleIndicator.AnchorPoint = Vector2.new(0, 0.5)
+			ToggleIndicator.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+			ToggleIndicator.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ToggleIndicator.BorderSizePixel = 0
+			ToggleIndicator.Position = UDim2.new(0.0210526325, 0, 0.5, 0)
+			ToggleIndicator.Size = UDim2.new(0, 16, 0, 16)
+			toggleclick.Name = options.Name
+			toggleclick.Parent = SomeToggle
+			toggleclick.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			toggleclick.BackgroundTransparency = 1.000
+			toggleclick.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			toggleclick.BorderSizePixel = 0
+			toggleclick.Size = UDim2.new(1, 0, 1, 0)
+			toggleclick.ZIndex = 2
+			toggleclick.Font = Enum.Font.RobotoMono
+			toggleclick.Text = ""
+			toggleclick.TextColor3 = Color3.fromRGB(0, 0, 0)
+			toggleclick.TextSize = 14.000
+			
+			togfunc.onclick = function()
+				togfunc.Toggled = not togfunc.Toggled
+				ToggleIndicator.BackgroundColor3 = (togfunc.Toggled and klib.Theme) or Color3.fromRGB(70, 70, 70)
+				options.Callback(togfunc.Toggled)
+			end
+			
+			toggleclick.MouseButton1Click:Connect(togfunc.onclick)
+			
+			if options.Default then
+				togfunc.onclick()
+			end
+		end
+		
+		function section:TextBox(options)
+			local SomeTextBox = Instance.new("Frame")
+			local BoxInput = Instance.new("TextBox")
+			SomeTextBox.Name = "SomeTextBox"
+			SomeTextBox.Parent = sectioncontent
+			SomeTextBox.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+			SomeTextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			SomeTextBox.BorderSizePixel = 0
+			SomeTextBox.Position = UDim2.new(0.0236842111, 0, 0.118483409, 0)
+			SomeTextBox.Size = UDim2.new(0, 181, 0, 21)
+			BoxInput.Name = options.Name
+			BoxInput.Parent = SomeTextBox
+			BoxInput.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			BoxInput.BackgroundTransparency = 1.000
+			BoxInput.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			BoxInput.BorderSizePixel = 0
+			BoxInput.Position = UDim2.new(0.0210534204, 0, 0, 0)
+			BoxInput.Size = UDim2.new(0.978946805, 0, 1, 0)
+			BoxInput.Font = Enum.Font.RobotoMono
+			BoxInput.ClearTextOnFocus = options.ClearOnFocus or false
+			BoxInput.PlaceholderText = options.Placeholder or "Text Input"
+			BoxInput.Text = options.Default or ""
+			BoxInput.TextColor3 = klib.Theme
+			BoxInput.TextSize = 14.000
+			BoxInput.TextStrokeTransparency = 0.000
+			BoxInput.TextXAlignment = Enum.TextXAlignment.Left
+			BoxInput.FocusLost:Connect(function(enterpressed)
+				if not enterpressed and options.EnterPressed then return end
+				options.Callback(BoxInput.Text)
+				if options.ClearOnLost then
+					BoxInput.Text = ""
+				end
+			end)
+		end
+		
+		function section:Slider(options)
+			local slfunc = {
+				Dragging = false,
+				Mouse = game.Players.LocalPlayer:GetMouse()
+			}
+			local SomeSlider = Instance.new("Frame")
+			local slidername = Instance.new("TextLabel")
+			local ASlider = Instance.new("Frame")
+			local slidervalue = Instance.new("TextLabel")
+			local sliderinner = Instance.new("Frame")
+			local sliderinput = Instance.new("TextButton")
+			SomeSlider.Name = "SomeSlider"
+			SomeSlider.Parent = sectioncontent
+			SomeSlider.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+			SomeSlider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			SomeSlider.BorderSizePixel = 0
+			SomeSlider.Position = UDim2.new(0.0236842111, 0, 0.360189587, 0)
+			SomeSlider.Size = UDim2.new(0, 181, 0, 40)
+			slidername.Name = "slidername"
+			slidername.Parent = SomeSlider
+			slidername.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			slidername.BackgroundTransparency = 1.000
+			slidername.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			slidername.BorderSizePixel = 0
+			slidername.Position = UDim2.new(0.0321028046, 0, 0, 0)
+			slidername.Size = UDim2.new(0.931578934, 0, 0.449999988, 0)
+			slidername.Font = Enum.Font.RobotoMono
+			slidername.Text = options.Name
+			slidername.TextColor3 = Color3.fromRGB(255, 255, 255)
+			slidername.TextSize = 14.000
+			slidername.TextStrokeTransparency = 0.000
+			slidername.TextXAlignment = Enum.TextXAlignment.Left
+			ASlider.Name = "ASlider"
+			ASlider.Parent = SomeSlider
+			ASlider.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+			ASlider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ASlider.BorderSizePixel = 0
+			ASlider.Position = UDim2.new(0.0276243091, 0, 0.449999988, 0)
+			ASlider.Size = UDim2.new(0, 169, 0, 16)
+			slidervalue.Name = "slidervalue"
+			slidervalue.Parent = ASlider
+			slidervalue.AnchorPoint = Vector2.new(0.5, 0.5)
+			slidervalue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			slidervalue.BackgroundTransparency = 1.000
+			slidervalue.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			slidervalue.BorderSizePixel = 0
+			slidervalue.Position = UDim2.new(0.5, 0, 0.5, 0)
+			slidervalue.Size = UDim2.new(0, 15, 0, 15)
+			slidervalue.ZIndex = 3
+			slidervalue.Font = Enum.Font.SourceSans
+			slidervalue.Text = "15"
+			slidervalue.TextColor3 = Color3.fromRGB(255, 255, 255)
+			slidervalue.TextSize = 14.000
+			sliderinner.Name = "sliderinner"
+			sliderinner.Parent = ASlider
+			sliderinner.BackgroundColor3 = klib.Theme
+			sliderinner.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			sliderinner.BorderSizePixel = 0
+			sliderinner.Size = UDim2.new(0.319526613, 0, 1, 0)
+			sliderinput.Name = "sliderinput"
+			sliderinput.Parent = ASlider
+			sliderinput.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			sliderinput.BackgroundTransparency = 1.000
+			sliderinput.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			sliderinput.BorderSizePixel = 0
+			sliderinput.Size = UDim2.new(1, 0, 1, 0)
+			sliderinput.ZIndex = 3
+			sliderinput.Font = Enum.Font.SourceSans
+			sliderinput.Text = ""
+			sliderinput.TextColor3 = Color3.fromRGB(0, 0, 0)
+			sliderinput.TextSize = 14.000
+			
+			sliderinput.MouseButton1Down:Connect(function()
+				slfunc.Dragging = true
+				task.spawn(function()
+					while slfunc.Dragging do
+						local output = math.clamp((slfunc.Mouse.X - ASlider.AbsolutePosition.X)/ASlider.AbsoluteSize.X, 0, 1)
+						game:GetService("TweenService"):Create(sliderinner, TweenInfo.new(options.SliderSpeed or 0.1, Enum.EasingStyle.Sine), {Size = UDim2.new(tonumber(output), 0, 1, 0)}):Play()
+						output = options.Min + (output * (options.Max - options.Min))
+						output = (options.Round and math.round(output)) or output
+						slidervalue.Text = tostring(output)
+						options.Callback(output)
+						task.wait()
+					end
+				end)
+			end)
+
+			game:GetService("UserInputService").InputEnded:Connect(function(inp)
+				if inp.UserInputType == Enum.UserInputType.MouseButton1 and slfunc.Dragging then
+					slfunc.Dragging = false
+				end
+			end)
+		end
+		
+		function section:Button(options)
+			local SomeButton = Instance.new("Frame")
+			local buttonname = Instance.new("TextLabel")
+			local buttonclick = Instance.new("TextButton")
+			SomeButton.Name = options.Name
+			SomeButton.Parent = sectioncontent
+			SomeButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+			SomeButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			SomeButton.BorderSizePixel = 0
+			SomeButton.Position = UDim2.new(0.0236842111, 0, 0.118483409, 0)
+			SomeButton.Size = UDim2.new(0, 181, 0, 21)
+			buttonname.Name = options.Name
+			buttonname.Parent = SomeButton
+			buttonname.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			buttonname.BackgroundTransparency = 1.000
+			buttonname.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			buttonname.BorderSizePixel = 0
+			buttonname.Position = UDim2.new(0.0210526325, 0, 0, 0)
+			buttonname.Size = UDim2.new(0.931578934, 0, 1, 0)
+			buttonname.Font = Enum.Font.RobotoMono
+			buttonname.Text = options.Name
+			buttonname.TextColor3 = klib.Theme
+			buttonname.TextSize = 14.000
+			buttonname.TextStrokeTransparency = 0
+			buttonclick.Name = options.Name
+			buttonclick.Parent = SomeButton
+			buttonclick.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			buttonclick.BackgroundTransparency = 1.000
+			buttonclick.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			buttonclick.BorderSizePixel = 0
+			buttonclick.Size = UDim2.new(1, 0, 1, 0)
+			buttonclick.ZIndex = 2
+			buttonclick.Font = Enum.Font.RobotoMono
+			buttonclick.Text = ""
+			buttonclick.TextColor3 = Color3.fromRGB(0, 0, 0)
+			buttonclick.TextSize = 14.000
+			
+			buttonclick.MouseButton1Click:Connect(options.Callback)
+		end
+		
+		function section:DropDown(options)
+			local ddapi = {
+				Open = false
+			}
+			local SomeDropDown = Instance.new("Frame")
+			local ddname = Instance.new("TextLabel")
+			local ddindi = Instance.new("ImageButton")
+			local ddcontent = Instance.new("ScrollingFrame")
+			local ddlist = Instance.new("UIListLayout")
+			local clickhitdropdown = Instance.new("TextButton")
+			SomeDropDown.Name = "SomeDropDown"
+			SomeDropDown.Parent = sectioncontent
+			SomeDropDown.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+			SomeDropDown.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			SomeDropDown.BorderSizePixel = 0
+			SomeDropDown.Position = UDim2.new(0.0236842111, 0, 0.161137447, 0)
+			SomeDropDown.Size = UDim2.new(0, 181, 0, 21)
+			ddname.Name = "ddname"
+			ddname.Parent = SomeDropDown
+			ddname.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ddname.BackgroundTransparency = 1.000
+			ddname.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ddname.BorderSizePixel = 0
+			ddname.Position = UDim2.new(0, 5, 0, 0)
+			ddname.Size = UDim2.new(0, 133, 0, 21)
+			ddname.Font = Enum.Font.RobotoMono
+			ddname.Text = options.Name
+			ddname.TextColor3 = klib.Theme
+			ddname.TextSize = 14.000
+			ddname.TextStrokeTransparency = 0.000
+			ddname.TextXAlignment = Enum.TextXAlignment.Left
+			ddindi.Name = "ddindi"
+			ddindi.Parent = SomeDropDown
+			ddindi.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ddindi.BackgroundTransparency = 1.000
+			ddindi.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ddindi.BorderSizePixel = 0
+			ddindi.Position = UDim2.new(0, 156, 0, 2)
+			ddindi.Size = UDim2.new(0, 17, 0, 17)
+			ddindi.Image = "rbxassetid://93215055821107"
+			ddcontent.Name = "ddcontent"
+			ddcontent.Parent = SomeDropDown
+			ddcontent.Active = true
+			ddcontent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ddcontent.BackgroundTransparency = 1.000
+			ddcontent.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ddcontent.BorderSizePixel = 0
+			ddcontent.Position = UDim2.new(0.0276243091, 0, 0.151724145, 0)
+			ddcontent.Size = UDim2.new(0, 167, 0, 123)
+			ddcontent.Visible = false
+			ddcontent.BottomImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+			ddcontent.CanvasSize = UDim2.new(0, 0, 0, 0)
+			ddcontent.ScrollBarThickness = 4
+			ddcontent.TopImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+			ddlist.Name = "ddlist"
+			ddlist.Parent = ddcontent
+			ddlist.HorizontalAlignment = Enum.HorizontalAlignment.Center
+			ddlist.SortOrder = Enum.SortOrder.LayoutOrder
+			ddlist.Padding = UDim.new(0, 4)
+			clickhitdropdown.Parent = SomeDropDown
+			clickhitdropdown.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			clickhitdropdown.BackgroundTransparency = 1.000
+			clickhitdropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			clickhitdropdown.BorderSizePixel = 0
+			clickhitdropdown.Position = UDim2.new(0, 0, 0, 0)
+			clickhitdropdown.Size = UDim2.new(1, 0, 0, 21)
+			clickhitdropdown.ZIndex = 2
+			clickhitdropdown.Font = Enum.Font.SourceSans
+			clickhitdropdown.Text = ""
+			clickhitdropdown.TextColor3 = Color3.fromRGB(0, 0, 0)
+			clickhitdropdown.TextSize = 14.000
+			
+			ddapi.OnClick = function()
+				ddapi.Open = not ddapi.Open
+				ddcontent.Visible = ddapi.Open
+				game:GetService("TweenService"):Create(SomeDropDown, TweenInfo.new(0.2, Enum.EasingStyle.Sine), {Size = (ddapi.Open and UDim2.new(0, 181, 0, 154)) or UDim2.new(0, 181, 0, 21)}):Play()
+			end
+			
+			clickhitdropdown.MouseButton1Click:Connect(ddapi.OnClick)
+			
+			for i, v in options.List do
+				local DDITEM = Instance.new("TextButton")
+				DDITEM.Name = "DDITEM"
+				DDITEM.Parent = ddcontent
+				DDITEM.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+				DDITEM.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				DDITEM.BorderSizePixel = 0
+				DDITEM.Position = UDim2.new(0.0209580846, 0, 0, 0)
+				DDITEM.Size = UDim2.new(0, 160, 0, 21)
+				DDITEM.AutoButtonColor = false
+				DDITEM.Font = Enum.Font.RobotoMono
+				DDITEM.Text = tostring(v)
+				DDITEM.TextColor3 = Color3.fromRGB(108, 108, 108)
+				DDITEM.TextSize = 14.000
+				
+				DDITEM.MouseButton1Click:Connect(function()
+					ddapi.OnClick()
+					options.Callback(v)
+				end)
+			end
+		end
+		
+		return section
+	end
+	
+	return tabcreateelementfunc
+end
+
+return klib
