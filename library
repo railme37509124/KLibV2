@@ -533,6 +533,7 @@ klib.CreateTab = function(options)
 			ddcontent.CanvasSize = UDim2.new(0, 0, 0, 0)
 			ddcontent.ScrollBarThickness = 4
 			ddcontent.TopImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+			ddcontent.AutomaticCanvasSize = Enum.AutomaticSize.Y
 			ddlist.Name = "ddlist"
 			ddlist.Parent = ddcontent
 			ddlist.HorizontalAlignment = Enum.HorizontalAlignment.Center
