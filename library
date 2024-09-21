@@ -417,7 +417,7 @@ klib.CreateTab = function(options)
 			sliderinput.TextSize = 14.000
 			slfunc.Set = function(new)
 				slidervalue.Text = tostring(new)
-				game:GetService("TweenService"):Create(sliderinner, TweenInfo.new(options.SliderSpeed or 0.1, Enum.EasingStyle.Sine), {Size = UDim2.new(tonumber(math.clamp(new, 0, 1)), 0, 1, 0)}):Play()
+				game:GetService("TweenService"):Create(sliderinner, TweenInfo.new(options.SliderSpeed or 0.1, Enum.EasingStyle.Sine), {Size = UDim2.new((new - options.Min) / (options.Max - options.Min), 0, 1, 0)}):Play()
 				options.Callback(new)
 			end
 			if options.Default then slfunc.Set(options.Default) end
