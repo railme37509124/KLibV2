@@ -417,7 +417,7 @@ klib.CreateTab = function(options)
 			slfunc.Set = function(new)
 				slidervalue.Text = tostring(new)
 				options.Callback(new)
-			end)
+			end
 			if options.Default then slfunc.Set(options.Default) end
 			sliderinput.MouseButton1Down:Connect(function()
 				slfunc.Dragging = true
