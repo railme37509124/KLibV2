@@ -294,17 +294,18 @@ klib.CreateTab = function(options)
 			toggleclick.TextColor3 = Color3.fromRGB(0, 0, 0)
 			toggleclick.TextSize = 14.000
 			
-			togfunc.onclick = function()
+			togfunc.Click = function()
 				togfunc.Toggled = not togfunc.Toggled
 				ToggleIndicator.BackgroundColor3 = (togfunc.Toggled and klib.Theme) or Color3.fromRGB(70, 70, 70)
 				options.Callback(togfunc.Toggled)
 			end
 			
-			toggleclick.MouseButton1Click:Connect(togfunc.onclick)
+			toggleclick.MouseButton1Click:Connect(togfunc.Click)
 			
 			if options.Default then
-				togfunc.onclick()
+				togfunc.Click()
 			end
+			return togfunc
 		end
 		
 		function section:TextBox(options)
