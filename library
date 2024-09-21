@@ -393,7 +393,7 @@ klib.CreateTab = function(options)
 			slidervalue.Size = UDim2.new(0, 15, 0, 15)
 			slidervalue.ZIndex = 3
 			slidervalue.Font = Enum.Font.SourceSans
-			slidervalue.Text = options.Default or "0"
+			slidervalue.Text = options.Default or options.Min or "0"
 			slidervalue.TextColor3 = Color3.fromRGB(255, 255, 255)
 			slidervalue.TextSize = 14.000
 			sliderinner.Name = "sliderinner"
@@ -401,7 +401,7 @@ klib.CreateTab = function(options)
 			sliderinner.BackgroundColor3 = klib.Theme
 			sliderinner.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			sliderinner.BorderSizePixel = 0
-			sliderinner.Size = UDim2.new(0.319526613, 0, 1, 0)
+			sliderinner.Size = UDim2.new(0, 0, 1, 0)
 			sliderinput.Name = "sliderinput"
 			sliderinput.Parent = ASlider
 			sliderinput.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -418,6 +418,7 @@ klib.CreateTab = function(options)
 				slidervalue.Text = tostring(new)
 				options.Callback(new)
 			end)
+			if options.Default then slfunc.Set(options.Default) end
 			sliderinput.MouseButton1Down:Connect(function()
 				slfunc.Dragging = true
 				task.spawn(function()
