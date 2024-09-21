@@ -414,7 +414,10 @@ klib.CreateTab = function(options)
 			sliderinput.Text = ""
 			sliderinput.TextColor3 = Color3.fromRGB(0, 0, 0)
 			sliderinput.TextSize = 14.000
-			
+			slfunc.Set = function(new)
+				slidervalue.Text = tostring(new)
+				options.Callback(new)
+			end)
 			sliderinput.MouseButton1Down:Connect(function()
 				slfunc.Dragging = true
 				task.spawn(function()
@@ -423,8 +426,7 @@ klib.CreateTab = function(options)
 						game:GetService("TweenService"):Create(sliderinner, TweenInfo.new(options.SliderSpeed or 0.1, Enum.EasingStyle.Sine), {Size = UDim2.new(tonumber(output), 0, 1, 0)}):Play()
 						output = options.Min + (output * (options.Max - options.Min))
 						output = (options.Round and math.round(output)) or output
-						slidervalue.Text = tostring(output)
-						options.Callback(output)
+						slfunc.Set(output)
 						task.wait()
 					end
 				end)
