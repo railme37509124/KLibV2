@@ -1,12 +1,9 @@
 -- this was coded so badly but it doesnt matter because it works
-
 repeat task.wait() until game:IsLoaded()
 inst=nil
-if _G.klibloaded ~= nil then _G.klibloaded:Destroy() end
 klib = {
 	Tabs={},Hover=false,TabCount=0,DragSpeed=0.2,Destroy=function()inst:Destroy()end,Theme=Color3.fromRGB(81, 255, 6)
 }
-
 local gui2 = Instance.new("ScreenGui")
 local topbar = Instance.new("Frame")
 local contents = Instance.new("Frame")
