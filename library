@@ -3,7 +3,7 @@ repeat task.wait() until game:IsLoaded()
 print("lib very 2.0.7")
 inst=nil
 klib = {
-	Tabs={},Hover=false,TabCount=0,DragSpeed=0.2,Destroy=function()inst:Destroy()end,Theme=Color3.fromRGB(81, 255, 6)
+	Tabs={},Hover=false,TabCount=0,DragSpeed=0.2,Destroy=function()inst:Destroy()end,Theme=Color3.fromRGB(127, 204, 255)
 }
 local gui2 = Instance.new("ScreenGui")
 local topbar = Instance.new("Frame")
