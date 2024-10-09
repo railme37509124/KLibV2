@@ -440,7 +440,7 @@ klib.CreateTab = function(options)
 				end
 			end)
 
-      sliderinput.MouseButton1Click:Connect(function()slfunc.Dragging=false;end) -- mobile fix
+      sliderinput.MouseButton1Up:Connect(function()slfunc.Dragging=false;end) -- mobile fix
 
 			return slfunc
 		end
