@@ -435,7 +435,7 @@ klib.CreateTab = function(options)
 			end)
 
 			game:GetService("UserInputService").InputEnded:Connect(function(inp)
-				if inp.UserInputType == Enum.UserInputType.MouseButton1 and slfunc.Dragging then
+				if (inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch) and slfunc.Dragging then
 					slfunc.Dragging = false
 				end
 			end)
